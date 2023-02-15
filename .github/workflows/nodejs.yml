@@ -1,0 +1,27 @@
+name: Deploy CDK
+#  BEWARE THIS LAUNCHES MACHINES ON AWS - expose the push to do so
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+     deploy:   
+        name: Deploy
+        uses: udondan/cdk-nodejs@v0.3.1
+        with:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
