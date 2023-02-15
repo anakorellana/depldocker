@@ -19,8 +19,7 @@ jobs:
         with:
           fetch-depth: 1
 
-     deploy:   
-        name: Deploy
+      - name: Deploy
         uses: udondan/cdk-nodejs@v0.3.1
         with:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
